@@ -1,7 +1,11 @@
 <x-layout>
     <x-slot:heading>
-        Affiliates
+        Affiliates 
+        <div class="inline ml-auto mr-0">
+            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Total: {{ count($affiliates) }}</span>
+        </div>
     </x-slot:heading>
+
     <ul role="list" class="divide-y divide-gray-100">
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">

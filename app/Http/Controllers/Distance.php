@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 class Distance extends Controller
 {
-    public function greatCircleDistance($lat, $lng, $dublinLatitude, $dublinLongitude)
+    public function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
     {
         // Radius of the Earth in kilometers (for Europe)
         $earthRadiusKm = 6371;
@@ -26,11 +26,12 @@ class Distance extends Controller
         return $distance;
     }
     
-    public function haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad)
+    public function haversineFormula(string $latDiff, string $lonDiff, string $lat1Rad, string $lat2Rad): string
     {
         // Calculate Great-circle distance using Haversine formula
         $formula = sin($latDiff / 2) * sin($latDiff / 2) + cos($lat1Rad) * cos($lat2Rad) * sin($lonDiff / 2) * sin($lonDiff / 2);
         $distance = 2 * atan2(sqrt($formula), sqrt(1 - $formula));
-        return $distance;
+        return $distance; 
+
     }
 }
