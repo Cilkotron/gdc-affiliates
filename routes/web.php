@@ -4,7 +4,7 @@ use App\Http\Controllers\Affiliate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/affiliates', function () {
     return view(
