@@ -7,7 +7,7 @@ class Affiliate extends Controller
 {
     const DUBLIN_LAT = 53.3340285;
     const DUBLIN_LNG = -6.2535495;
-    const RADIUS = 50; 
+    const RADIUS = 100; 
 
     public static function getAffiliates() :array 
     {
