@@ -20,6 +20,8 @@ class Affiliate extends Controller
     }
 
     private static function parseAffiliates($file) {
+        $dublinLatitude = 53.3340285;
+        $dublinLongitude = -6.2535495;
         $documentLines = explode("\n", $file);
         $matchedAffiliates = [];
         // Iterate through each line od document
@@ -27,7 +29,7 @@ class Affiliate extends Controller
             $jsonData = json_decode($line);
             if ($jsonData !== null) {
                 $distance = new Distance();
-                $distance = $distance->greatCircleDistance($jsonData->latitude, $jsonData->longitude);
+                $distance = $distance->greatCircleDistance($jsonData->latitude, $jsonData->longitude, $dublinLatitude, $dublinLongitude);
                 if ($distance <= 100) {
                     array_push($matchedAffiliates, $jsonData);
                 }

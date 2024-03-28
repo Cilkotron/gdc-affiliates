@@ -15,7 +15,7 @@
         </li>
     </ul>
     <ul role="list" class="divide-y divide-gray-100">
-        @foreach ($affiliates as $affiliate )
+        @foreach ($affiliates as $affiliate)
             <li class="flex justify-between py-5">
                 <div class="flex min-w-0 gap-x-4">
                     <i class="fa fa-user"></i>
@@ -30,6 +30,4 @@
             </li>
         @endforeach
     </ul>
-
-
 </x-layout>

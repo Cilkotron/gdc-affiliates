@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 
 class Distance extends Controller
 {
-    public function greatCircleDistance($lat, $lng)
+    public function greatCircleDistance($lat, $lng, $dublinLatitude, $dublinLongitude)
     {
         // Radius of the Earth in kilometers (for Europe)
         $earthRadiusKm = 6371;
-        $dublinLatitude = 53.3340285;
-        $dublinLongitude = -6.2535495;
-
+     
         // Convert latitude and longitude from degrees to radians
         $lat1Rad = deg2rad($dublinLatitude);
         $lon1Rad = deg2rad($dublinLongitude);
