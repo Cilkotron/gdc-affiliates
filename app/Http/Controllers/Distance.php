@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 class Distance extends Controller
 {
@@ -28,13 +27,12 @@ class Distance extends Controller
 
         return $distance;
     }
-    private function haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad)
+    
+    public function haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad)
     {
         // Calculate Great-circle distance using Haversine formula
-        $a = sin($latDiff / 2) * sin($latDiff / 2) +
-            cos($lat1Rad) * cos($lat2Rad) *
-            sin($lonDiff / 2) * sin($lonDiff / 2);
-        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-        return $c;
+        $formula = sin($latDiff / 2) * sin($latDiff / 2) + cos($lat1Rad) * cos($lat2Rad) * sin($lonDiff / 2) * sin($lonDiff / 2);
+        $distance = 2 * atan2(sqrt($formula), sqrt(1 - $formula));
+        return $distance;
     }
 }

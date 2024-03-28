@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 Route::get('/affiliates', function () {
     return view(
-        'affiliates', ['affiliates' => Affiliate::readFromFile()]
+        'affiliates', ['affiliates' => Affiliate::getAffiliates()]
        
     );
 });
