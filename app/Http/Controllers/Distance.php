@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 
 class Distance extends Controller
 {
+    const EARTH_RADIUS_KM = 6371; 
+    
     public function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
     {
-        // Radius of the Earth in kilometers (for Europe)
-        $earthRadiusKm = 6371;
-     
+    
         // Convert latitude and longitude from degrees to radians
         $lat1Rad = deg2rad($dublinLatitude);
         $lon1Rad = deg2rad($dublinLongitude);
@@ -21,7 +21,7 @@ class Distance extends Controller
         $lonDiff = $lon2Rad - $lon1Rad;
 
         $greatCircleDistance = $this->haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad);
-        $distance = $earthRadiusKm * $greatCircleDistance;
+        $distance = self::EARTH_RADIUS_KM * $greatCircleDistance;
 
         return $distance;
     }
