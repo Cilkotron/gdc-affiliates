@@ -18,7 +18,7 @@ This is a Laravel project configured to use Vite for frontend development.
 
     2. Navigate to the project directory:
         ```bash
-        cd your-laravel-project
+        cd gdc-affiliates
         ```
 
     3. Install PHP dependencies:
