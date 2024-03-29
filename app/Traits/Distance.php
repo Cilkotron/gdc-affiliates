@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Traits;
+use Illuminate\Support\Facades\Config; 
 
 trait Distance
 {
-
-    const EARTH_RADIUS_KM = 6371; 
     
     public static function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
     {
@@ -21,7 +20,7 @@ trait Distance
         $lonDiff = $lon2Rad - $lon1Rad;
 
         $greatCircleDistance = self::haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad);
-        $distance = self::EARTH_RADIUS_KM * $greatCircleDistance;
+        $distance = Config::get('affiliates.earth_radius_km') * $greatCircleDistance;
 
         return $distance;
     }

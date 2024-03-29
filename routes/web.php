@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Affiliate;
+use App\Http\Controllers\AffiliateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 Route::get('/affiliates', function () {
     return view(
-        'affiliates', ['affiliates' => Affiliate::getAffiliates()]
+        'affiliates', ['affiliates' => AffiliateController::index() ]
        
     );
 });
