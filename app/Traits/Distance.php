@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Traits;
 
-
-class Distance extends Controller
+trait Distance
 {
+
     const EARTH_RADIUS_KM = 6371; 
     
     public static function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
@@ -35,3 +35,5 @@ class Distance extends Controller
 
     }
 }
+
+

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Arr;
 use App\Traits\FileRead; 
+use App\Traits\Distance; 
 
 class Affiliate extends Controller
 {
 
-    use FileRead; 
+    use FileRead, Distance; 
     const DUBLIN_LAT = 53.3340285;
     const DUBLIN_LNG = -6.2535495;
     const RADIUS = 100; 
@@ -34,9 +35,9 @@ class Affiliate extends Controller
         foreach ($documentLines as $line) {
             $affiliate = json_decode($line);
             if ($affiliate !== null) {
-                $distance = Distance::greatCircleDistance($affiliate->latitude, $affiliate->longitude, self::DUBLIN_LAT, self::DUBLIN_LNG);
+                $distance = self::greatCircleDistance($affiliate->latitude, $affiliate->longitude, self::DUBLIN_LAT, self::DUBLIN_LNG);
                 if ($distance <= self::RADIUS) {
-                    $affiliate->distance = round($distance, 2) ?? '';
+                    $affiliate->distance = round($distance, 1) ?? '';
                     array_push($matchedAffiliates, $affiliate);
                 }
             }
