@@ -5,10 +5,8 @@ use Illuminate\Support\Facades\Config;
 
 trait ParseAffiliates
 {
-
     public static function parseAffiliates(string $file) :array 
     {
-
         $documentLines = explode("\n", $file);
         $matchedAffiliates = [];
         // Iterate through each line od document

@@ -8,7 +8,6 @@ trait FileRead
 {
     public static function readFromFile(string $fileName): string
     {
-
         $fileLines = Storage::get($fileName);
 
         //Check if document exists 
