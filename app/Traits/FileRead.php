@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Traits;
 use Illuminate\Support\Facades\Storage;
 
-class File extends Controller
+trait FileRead
 {
-
     public static function readFromFile($fileName) {
     
         $fileLines = Storage::get($fileName);
@@ -15,6 +14,6 @@ class File extends Controller
             abort(404);
         }
         return $fileLines; 
-       
+
     }
 }

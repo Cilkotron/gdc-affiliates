@@ -25,11 +25,11 @@
                     <i class="fa fa-user"></i>
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">{{ $affiliate->name }}</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $affiliate->distance }} km</p>
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                     <p class="text-sm leading-6 text-gray-900">{{ $affiliate->affiliate_id }}</p>
-
                 </div>
             </li>
         @endforeach

@@ -1,23 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Arr;
+use App\Traits\FileRead; 
 
 class Affiliate extends Controller
 {
+
+    use FileRead; 
     const DUBLIN_LAT = 53.3340285;
     const DUBLIN_LNG = -6.2535495;
     const RADIUS = 100; 
+
 
     public static function getAffiliates() :array 
     {
         $fileName = 'affiliates.txt';
       
-        $file = File::readFromFile($fileName);
+        $file = self::readFromFile($fileName);
 
         $matchedAffiliates = self::parseAffiliates($file, self::RADIUS);
 
-        $sortedObjects = Sort::sortArray($matchedAffiliates, 'affiliate_id', 'asc');
+        $sortedObjects = Arr::sort($matchedAffiliates, 'affiliate_id'); 
 
         return $sortedObjects;
     }
@@ -28,12 +32,12 @@ class Affiliate extends Controller
         $matchedAffiliates = [];
         // Iterate through each line od document
         foreach ($documentLines as $line) {
-            $jsonData = json_decode($line);
-            if ($jsonData !== null) {
-                $distance = new Distance();
-                $distance = $distance->greatCircleDistance($jsonData->latitude, $jsonData->longitude, self::DUBLIN_LAT, self::DUBLIN_LNG);
+            $affiliate = json_decode($line);
+            if ($affiliate !== null) {
+                $distance = Distance::greatCircleDistance($affiliate->latitude, $affiliate->longitude, self::DUBLIN_LAT, self::DUBLIN_LNG);
                 if ($distance <= self::RADIUS) {
-                    array_push($matchedAffiliates, $jsonData);
+                    $affiliate->distance = round($distance, 2) ?? '';
+                    array_push($matchedAffiliates, $affiliate);
                 }
             }
         }

@@ -7,7 +7,7 @@ class Distance extends Controller
 {
     const EARTH_RADIUS_KM = 6371; 
     
-    public function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
+    public static function greatCircleDistance(string $lat, string $lng, string $dublinLatitude, string $dublinLongitude): string
     {
     
         // Convert latitude and longitude from degrees to radians
@@ -20,13 +20,13 @@ class Distance extends Controller
         $latDiff = $lat2Rad - $lat1Rad;
         $lonDiff = $lon2Rad - $lon1Rad;
 
-        $greatCircleDistance = $this->haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad);
+        $greatCircleDistance = self::haversineFormula($latDiff, $lonDiff, $lat1Rad, $lat2Rad);
         $distance = self::EARTH_RADIUS_KM * $greatCircleDistance;
 
         return $distance;
     }
     
-    public function haversineFormula(string $latDiff, string $lonDiff, string $lat1Rad, string $lat2Rad): string
+    private static function haversineFormula(string $latDiff, string $lonDiff, string $lat1Rad, string $lat2Rad): string
     {
         // Calculate Great-circle distance using Haversine formula
         $formula = sin($latDiff / 2) * sin($latDiff / 2) + cos($lat1Rad) * cos($lat2Rad) * sin($lonDiff / 2) * sin($lonDiff / 2);
