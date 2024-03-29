@@ -20,9 +20,9 @@ class Affiliate extends Model
 
         $matchedAffiliates = self::parseAffiliates($file, Config::get('affiliates.radius'));
 
-        $sortedObjects = Arr::sort($matchedAffiliates, 'affiliate_id'); 
+        $sortedArray = Arr::sort($matchedAffiliates, 'affiliate_id'); 
 
-        return $sortedObjects;
+        return $sortedArray;
     }
 
 }
